@@ -6,17 +6,19 @@
  *
  ******/
 #include <iostream>
-#include <fstream>
 #include <string>
-#include <lib/htmlcxx/html/ParserDom.h>
+#include "html.h"
 
 using namespace std;
-using namespace htmlcxx;
 
 int main(void)
 {
-    string html;
-    cin>>html;
+	cout<<"####### 请输入需要采集的网址 ######\n";
+    string url;
+    cin>>url;
 
+    Html H;
+    H.GetContentUrl(url);
 
+    return 0;
 }

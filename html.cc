@@ -15,15 +15,18 @@
 #include "html.h"
 
 using namespace std;
-//using namespace htmlcxx;
+using namespace htmlcxx;
 
 int Html::GetContentUrl(string& url)
 {
     string contenturls[16];
     ifstream htmlfile;
     int status;
-    assert(htmlfile.open("index.html", ios::in) > 0);
-    if(htmlfile.open("index.html", ios::in) < 0) {
+    //assert(htmlfile.open("index.html", ios::in) > 0);
+    int s;
+    htmlfile.open("index.html", ios::in);
+    s = htmlfile.is_open();
+    if(!s) {
     	// method 1.
     	/*
     	string temp = "wget";

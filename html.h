@@ -4,7 +4,7 @@
  *
  */
 #include <string>
-//#include "lib/htmlcxx/html/ParserDom.h"
+#include "ParserDom.h"
 
 using namespace std;
 

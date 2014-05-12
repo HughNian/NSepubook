@@ -4,7 +4,7 @@
  *
  */
 #include <string>
-#include "ParserDom.h"
+//#include "ParserDom.h"
 
 using namespace std;
 
@@ -14,5 +14,5 @@ public:
     Html();
     ~Html();
 
-    int GetContentUrl(string& url);
+    int getContentUrl(string& url);
 };

@@ -21,10 +21,10 @@ using namespace std;
 
 int Html::getContentUrl(string& url)
 {
-    string contenturls[16];
+    //string contenturls[16];
     ifstream htmlfile;
     int status;
-    assert(htmlfile.open("index.html", ios::in) > 0);
+    //assert(htmlfile.open("index.html", ios::in) > 0);
     int s;
     htmlfile.open("index.html", ios::in);
     s = htmlfile.is_open();
@@ -44,39 +44,61 @@ int Html::getContentUrl(string& url)
     	status = system(temp2);
     	cout<<"download file is ok"<<status<<endl;
     } else {
-		matchContent();
+		cout<<"输入正则表达式"<<endl;
+		char regexStr[1024] = {0};
+		scanf("%s", &regexStr);
+		printf("regexStr is %s\n", regexStr);
+		matchContent(regexStr);
     	cout<<"index.html 文件已经存在"<<endl;
     }
     return 0;
 }
 
 int Html::matchContent(const char* regexStr)
-{
+{	
 	ifstream file;
-	int length,s;
+	fstream txt;
+	int length,s,i;
 	regex_t oRegex;
 	int errorCode = 0;
 	char errorMsg[1024] = {0};
 	size_t errorMsgLen = 0;
-	regmatch_t match;
-
+	regmatch_t* match;
+	char value[1024] = {0}; 
+	
+	/*
 	file.open("index.html");
 	s = file.is_open();
-	if(!s) count<<"file is not exists"<<endl;
-	file.seekg(0, ios::end);
+	if(!s) cout<<"file is not exists"<<endl;
 	length = file.tellg();
-	file.seekg(0, ios:beg);
-	buffer = new char[length];
+	char* buffer = new char[length];
 	file.read(buffer, length);
 	file.close();
+	*/
 	
+	const char* buffer = "http://www.baidu.com";
+	printf("method's regexStr %s\n", regexStr);
+	int count_temp = 0;
 	if((errorCode = regcomp(&oRegex, regexStr, 0)) == 0){
 		if((errorCode = regexec(&oRegex, buffer, 0, match, 0)) == 0){
 			cout<<"match is"<<match<<endl;
+			for(i = match[0].rm_so; i < match[0].rm_eo; ++i){
+				printf("%c", buffer[i]);
+				sprintf(&value[count_temp ++], "%c", buffer[i]);
+			}
+			printf("%s", value);
 			regfree(&oRegex);
-			return 0;
 		}
 	}
+	
+	FILE *fp;
+
+	if((fp = fopen("epub.txt", "a")) != NULL) {
+		fputs(value, fp);
+		rewind(fp);
+	}
+	fclose(fp);
+	return 0;
 }
 
 Html::Html(){}

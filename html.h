@@ -15,4 +15,5 @@ public:
     ~Html();
 
     int getContentUrl(string& url);
+	int matchContent(const char* regexStr);
 };

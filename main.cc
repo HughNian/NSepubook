@@ -18,7 +18,7 @@ int main(void)
     cin>>url;
 
     Html H;
-    H.GetContentUrl(url);
+    H.getContentUrl(url);
 
     return 0;
 }

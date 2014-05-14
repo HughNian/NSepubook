@@ -15,4 +15,4 @@ main.o: main.cc
 html.o: html.cc html.h
 	$(CC) $(CFLAGS) -c html.cc html.h
 clean:
-	@rm epub -rf *.o
+	@rm epub -rf *.o *.h.gch *.txt
